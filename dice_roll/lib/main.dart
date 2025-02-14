@@ -26,22 +26,45 @@ class DiceRoll extends StatefulWidget {
 }
 
 class _DiceRollState extends State<DiceRoll> {
-  int diceNumber = 1;
+  int diceOne = 1;
+  int diceTwo = 1;
+  int diceSum = 2;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("Dice Roll"),
-          backgroundColor: Colors.amber,
-        ),
+            title: Text("Dice Roll",
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 60,
+                    fontWeight: FontWeight.bold)),
+            backgroundColor: Colors.amber),
         body: Center(
-            child: TextButton(
-                onPressed: () => setState(() {
-                      diceNumber = Random().nextInt(6) + 1;
-                    }),
-                child: Image.asset("images/dice-$diceNumber.png")
-                //Text("You rolled a: $diceNumber")
-                )));
+            child: Column(children: [
+          TextButton(
+              onPressed: () => setState(() {
+                    diceOne = Random().nextInt(6) + 1;
+                    diceSum = diceOne + diceTwo;
+                  }),
+              style: TextButton.styleFrom(minimumSize: Size(50, 50)),
+              child: Image.asset(
+                "images/dice-$diceOne.png",
+                width: 200,
+                height: 200,
+              )),
+          TextButton(
+            onPressed: () => setState(() {
+              diceTwo = Random().nextInt(6) + 1;
+              diceSum = diceOne + diceTwo;
+            }),
+            child: Image.asset(
+              "images/dice-$diceTwo.png",
+              width: 200,
+              height: 200,
+            ),
+          ),
+          Text("sum is $diceSum", style: TextStyle(fontSize: 40))
+        ])));
   }
 }
