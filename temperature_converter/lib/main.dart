@@ -103,9 +103,8 @@ class _TemperatureConverterState extends State<TemperatureConverter> {
                   groupValue: groupValue,
                   onChanged: (e) {
                     groupValue = 1;
-                    if (T != e) {
-                      performConversion(e!);
-                    }
+                    performConversion(e!);
+
                     setState(() {
                       //TODO: Set state
 
@@ -122,9 +121,8 @@ class _TemperatureConverterState extends State<TemperatureConverter> {
                   value: 2,
                   groupValue: groupValue,
                   onChanged: (e) {
-                    if (T != e) {
-                      performConversion(e!);
-                    }
+                    performConversion(e!);
+
                     setState(() {
                       //TODO
                       groupValue = 2;
