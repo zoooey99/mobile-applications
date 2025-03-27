@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:multipage/display.dart';
 import 'dashboard.dart';
 import 'customcard.dart';
 
@@ -52,6 +53,33 @@ class _MyUMAppState extends State<MyUMApp> {
     "UM’s campus dining includes a variety of options like dining halls, food courts, and local favorites, catering to diverse tastes and dietary needs.",
     "Ranked among top universities, UM provides strong academics, small class sizes, research opportunities, and faculty mentorship across its diverse programs."
   ];
+
+  var titles2 = [
+    "Celebrating a century of achievement with music",
+    "The musician she was meant to be",
+    "Bringing his music back home",
+    "A collision of musical worlds",
+    "From childhood talent to industry success",
+    "The soul of American song"
+  ];
+
+  var img2 = [
+    "https://news.miami.edu/frost/_assets/images/images-stories/2025/03/centennialartists365x365.png",
+    "https://news.miami.edu/frost/_assets/images/images-stories/2025/03/raquelsofia365x365.png",
+    "https://news.miami.edu/frost/_assets/images/images-stories/2025/03/musichome365x365.png",
+    "https://news.miami.edu/frost/_assets/images/images-stories/2025/03/tf3365x365.png",
+    "https://news.miami.edu/frost/_assets/images/images-stories/2025/03/idarose365x365.png",
+    "https://news.miami.edu/frost/_assets/images/images-stories/2025/02/soulsong365x365.png"
+  ];
+
+  var summaries2 = [
+    "A landmark concert by generations of famous Frost School alumni, hosted by celebrity TV host and Cane grad Jason Kennedy, will be the centerpiece of the University of Miami and the Frost School of Music’s Centennial Celebration on April 8.",
+    "Raquel Sofia’s path to international success as a bi-cultural singer and songwriter led through the Frost School of Music.",
+    "Multi-talented musician Justin Kinchen took the extraordinary skills he’s developed at the Frost School to a concert in his hometown of Indianapolis that showcased his original jazz and classical compositions and paid tribute to his childhood mentors.",
+    "The Frost School’s elite Stamps Ensembles learned to take new musical risks in a residency with the famed Time For Three trio, which blends multiple popular genres for a bold new interpretation of classical music.",
+    "The Frost School of Music helped songwriter and producer Alexis \"Idarose\" Kesselman turn her musical instincts into remarkable industry achievement.",
+    "A songwriting class that draws inspiration from the rich panoply of Black music helps students at the Frost School of Music expand their artistry, empathy, and understanding of American music."
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -66,28 +94,11 @@ class _MyUMAppState extends State<MyUMApp> {
           for (int i = 0; i < 6; i++)
             Customcard(img[i], titles[i], summaries[i]),
         ]),
-        Text(
-          "Page $currentPage",
-          style: TextStyle(
-            fontSize: 26,
-            fontWeight: FontWeight.w500,
-            color: Colors.green,
-            fontStyle: FontStyle.italic,
-          ),
-        ),
-        Text("Page $currentPage",
-            style: TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-              color: Colors.orange,
-              shadows: [
-                Shadow(
-                  blurRadius: 5,
-                  color: Colors.black38,
-                  offset: Offset(2, 2),
-                ),
-              ],
-            ))
+        ListView(children: <Widget>[
+          for (int i = 0; i < 6; i++)
+            Customcard(img2[i], titles2[i], summaries2[i]),
+        ]),
+        NewCard()
       ][currentPage]),
       bottomNavigationBar: NavigationBar(
         onDestinationSelected: (int index) {
@@ -98,10 +109,10 @@ class _MyUMAppState extends State<MyUMApp> {
         destinations: <Widget>[
           NavigationDestination(
               icon: Icon(Icons.dashboard), label: "Dashboard"),
-          NavigationDestination(icon: Icon(Icons.pages), label: "Page 1"),
-          NavigationDestination(icon: Icon(Icons.favorite), label: "Page 2"),
+          NavigationDestination(icon: Icon(Icons.home), label: "About UM"),
+          NavigationDestination(icon: Icon(Icons.music_note), label: "Frost"),
           NavigationDestination(
-              icon: Icon(Icons.sports_soccer), label: "Page 3"),
+              icon: Icon(Icons.bus_alert), label: "Transport"),
         ],
         selectedIndex: currentPage,
         indicatorColor: Colors.amber,
